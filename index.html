@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monkeypox Data Tracker</title>
+  <link href="index.css" rel="stylesheet" type="text/css" />
+  <!--   Charts CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- Font Awesome CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <!-- Slick Slider CSS -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <!-- Slick Slider Js -->
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <!--   Google Dev Charts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="papaparse.min.js"></script>
+
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>ArcGIS API for JavaScript Tutorials: Display a map</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.24/"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="nav">
+    <nav class="nav header-text" id="top-text">Monkeypox Data Tracker</nav>
+  </header>
+  <div>&nbsp;</div>
+
+
+  <!-- First Section -->
+  <div class="first-section">
+
+    <div class="scroll-outline">
+      <ul>
+        <li><button class="option" id="About">About Monkeypox</button></li>
+        <li><button class="option" id="Signs">Signs & Symptoms</button></li>
+        <li><button class="option" id="How">How it Spreads</button></li>
+        <li><button class="option" id="Prevention">Prevention</button></li>
+        <li><button class="option" id="Treatment">Treatment</button></li>
+      </ul>
+    </div>
+
+    <!-- Informational Paragraph -->
+    <p id="monkey-description"><b>Monkeypox: </b>is a rare disease caused by infection with the monkeypox
+      virus.
+      Monkeypox virus is part of the same family of viruses as variola virus, the virus that causes smallpox. Monkeypox
+      symptoms are similar to smallpox symptoms, but milder, and monkeypox is rarely fatal. Monkeypox is not related to
+      chickenpox.</p>
+    <!--The for more buttons-->
+    <div>
+      <div>&nbsp;</div>
+      <button id="button1" class="button-18" style="width:20%; id=" button1">Monkeypox History</button>
+      <div>&nbsp;</div>
+      <button id="button2" class="button-18 " style="width:20%; id=" button2">Monkeypox's Viral Composition</button>
+    </div>
+  </div>
+
+  <!--   Modals -->
+  <div>&nbsp;</div>
+
+  <div id="modal-1" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Monkeypox was discovered in 1958 when two outbreaks of a pox-like disease occurred in colonies of monkeys kept
+        for research. Despite being named “monkeypox,” the source of the disease remains unknown. However, African
+        rodents and non-human primates (like monkeys) might harbor the virus and infect people.
+        <br><br>
+        The first human case of monkeypox was recorded in 1970. Prior to the 2022 outbreak, monkeypox had been reported
+        in people in several central and western African countries. Previously, almost all monkeypox cases in people
+        outside of Africa were linked to international travel to countries where the disease commonly occurs or through
+        imported animals. These cases occurred on multiple continents.
+      </p>
+    </div>
+  </div>
+
+  <div id="modal-2" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Here is an image of the monkeypox virus. Monkeypox virus is an enveloped double-stranded DNA virus with a
+        genome size of around 190 kb. It belongs to the orthopoxvirus genus of the Poxviridae family. The orthopoxvirus
+        genus also includes vaccinia virus, cowpox virus, variola virus and several other, animal-related
+        poxviruses.<br> <br> <img src="https://cdn.mos.cms.futurecdn.net/PbVLpicmjMPoGuxMBdHUJ3.jpg"
+          alt="Monkeypox Virus Image" width="270" height="200"> <img
+          src="https://www.science.org/do/10.1126/science.add1068/abs/_2022_on_monkeypox.jpg"
+          alt="Monkeypox Virus Image" width="270" height="200"></p>
+    </div>
+  </div>
+
+
+  <!--Transition -->
+
+  <!--       MAP DIV -->
+
+  <!--Second section with graphs-->
+  <div class="second-section-outline">
+
+    <!--Number of cases output-->
+    <div id="second-section-one">
+      <h1 id="numCases" style="color:black;font-weight: bold;"></h1>
+    </div>
+
+    <div id="second-section-two">
+      <div class="map-section">
+        <div id="viewDiv"></div>
+      </div>
+
+      <div id="chart-dropdown-section">
+        <div class="dropdown-section">
+          <div class="header--nav col-lg-4">
+            <ul class="list-unstyled mb-0 pl-0 d-lg-inline-block d-none float-right">
+              <li>
+                <div class="dropdown dropdown--scrollable">
+                  <button id="selected" class="pointer dropdown-toggle dropdown-nav" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    The World<i class="fa fa-chevron-down fa-xs ml-2" aria-hidden="true" title="English checked"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item up arrow" href="#"><i class="fa fa-chevron-up"></i></a>
+                    <div class="dropdown-menu__content" data-items="8" data-items-scroll="5">
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to United States ">United
+                        States</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Andorra ">Andorra</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Argentina ">Argentina</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Australia ">Australia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Austria ">Austria</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Barbados ">Barbados</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Belgium ">Belgium</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Benin ">Benin</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Bermuda ">Bermuda</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Bosnia And
+                  Herzegovina ">Bosnia And Herzegovina</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Brazil ">Brazil</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Bulgaria ">Bulgaria</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Cameroon ">Cameroon</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Canada ">Canada</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Central African
+                  Republic ">Central African Republic</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Chile ">Chile</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to China ">China</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Columbia ">Columbia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Costa Rica ">Costa Rica</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Croatia ">Croatia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="CR">Czech Republic</a>
+                      <a class="dropdown-item lang-select" href="#"
+                        aria-label="switch to Democratic Republic Of The Congo ">Democratic Republic Of The Congo</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Denmark ">Denmark</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="DR">Dominican Republic</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Ecuador ">Ecuador</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Estonia ">Estonia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Finland ">Finland</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to France ">France</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Georgia ">Georgia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Germany ">Germany</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Ghana ">Ghana</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Gibraltar ">Gibraltar</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Greece ">Greece</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Guadeloupe ">Guadeloupe</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Hungary ">Hungary</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Iceland ">Iceland</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to India ">India</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Ireland ">Ireland</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Israel ">Israel</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Italy ">Italy</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Jamaica ">Jamaica</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Japan ">Japan</a>
+
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Latvia ">Latvia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Lebanon ">Lebanon</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Luxembourg ">Luxembourg</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Malta ">Malta</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Martinique ">Martinique</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Mexico ">Mexico</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Montenegro ">Montenegro</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Morocco ">Morocco</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Netherlands ">Netherlands</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="NC ">New Caledonia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to New Zealand ">New Zealand</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Nigeria ">Nigeria</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Norway ">Norway</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Panama ">Panama</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Peru ">Peru</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Philippines ">Philippines</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Poland ">Poland</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Portugal ">Portugal</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Puerto Rico ">Puerto Rico</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Qatar ">Qatar</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="RC">Republic of Congo</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Romania ">Romania</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Russia ">Russia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Saudi Arabia ">Saudi
+                        Arabia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Serbia ">Serbia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Singapore ">Singapore</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Slovakia ">Slovakia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Slovenia ">Slovenia</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to South Africa ">South
+                        Africa</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to South Korea ">South Korea</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Spain ">Spain</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Sweden ">Sweden</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Switzerland ">Switzerland</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Taiwan ">Taiwan</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Thailand ">Thailand</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Turkey ">Turkey</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="UAE">United Arab Emirates</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="UK">United Kingdom</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="US">United States</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Uruguay ">Uruguay</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Venezuela ">Venezuela</a>
+                      <a class="dropdown-item lang-select" href="#" aria-label="switch to Venezuela ">Venezuela</a>
+                    </div>
+                    <a class="dropdown-item down arrow" href="#" aria-label="scroll down to select"><i
+                        class="fa fa-chevron-down" aria-hidden="true" title="dropdown arrow"></i></a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="rectangle" id="rectangle-1">
+          <div id="graph-1" class="graph">&nbsp;
+            <table id="graph1"
+              class="charts-css column show-data-on-hover show-labels show-heading show-primary-axis show-data-axes">
+              <caption class="graphCaption"> Worldwide Cases Over Time </caption>
+              <tbody id="bars">
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="rectangle" id="rectangle-2">
+          <div id="graph-2" class="graph">&nbsp;
+            <table id="graph2"
+              class="charts-css column show-data-on-hover show-labels show-heading show-primary-axis show-data-axes">
+              <caption id="countrySpecificCaption" class="graphCaption"> Country Specific Cases </caption>
+              <tbody id="bars2">
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="rectangle" id="rectangle-3">
+          <div id="graph-3" class="graph3">&nbsp;
+            <div id="piechart" style="width: 30%; height: 100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Country dropdown-->
+  <!--   <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div> -->
+  <div>&nbsp;</div>
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify">Hello! This is a project by Sophia Wang and Anthony Tafoya for Google CSSI. Within
+            this website, we have brought a live tracking of monkeypox cases with visuals to ensure patients are
+            updated
+            on the latest trends. We thank everyone on the CSSI staff for mentoring us over these 4 intensive weeks
+            and
+            we hope you enjoy our work.</p>
+        </div>
+        <div class="col-xs-6 col-md-3">
+          <h6>The Authors:</h6>
+          <ul class="footer-links">
+            <div class="row">
+              <div class="col">
+                <li><img src="images/sophia.png" style="width:100%;height:100%;"></li>
+              </div>
+              <div>&nbsp;</div>
+              <div class="col">
+                <li><img src="images/anthony.png" style="width:100%;height:100%;"></li>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by
+            <a href="#">Google</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="linkedin" href="https://www.linkedin.com/in/sophia-wang--/"><i class="fa fa-linkedin"></i></a>
+            </li>
+            <li><a class="linkedin" href="https://www.linkedin.com/in/anthony-tafoya-37b2bb1b0"><i
+                  class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
